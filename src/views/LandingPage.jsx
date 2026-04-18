@@ -32,19 +32,21 @@ const LandingPage = () => {
           {uiCopy.homepageTitle}
         </Motion.h1>
 
-        {/* Sottotitolo */}
-        <Motion.p
+        {/* Box informativo stile Regolamento per leggibilità */}
+        <Motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="hero__subtitle"
+          className="hero__box"
         >
-          {uiCopy.homepageSubtitle}
-          <br />
-          <span style={{ opacity: 0.7, fontSize: '0.9em' }}>
-            {uiCopy.homepageExplanation}
-          </span>
-        </Motion.p>
+          <p className="hero__subtitle">
+            {uiCopy.homepageSubtitle}
+            <br />
+            <span className="hero__description">
+              {uiCopy.homepageExplanation}
+            </span>
+          </p>
+        </Motion.div>
 
         {/* CTA */}
         <Motion.div

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './views/LandingPage';
 import QuizSelection from './views/QuizSelection';
 import RulesView from './views/RulesView';
@@ -11,7 +11,7 @@ import GameScreen from './views/GameScreen';
  */
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="app-shell">
         <Routes>
           {/* Landing Page */}
@@ -25,7 +25,7 @@ function App() {
           <Route path="/quiz/:id" element={<GameScreen />} />
         </Routes>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

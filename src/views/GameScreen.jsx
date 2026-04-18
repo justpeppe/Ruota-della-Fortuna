@@ -17,7 +17,7 @@ const CosmicBg = () => (
   </div>
 );
 
-const GameHeader = ({ id }) => (
+const GameHeader = () => (
   <header className="game-header">
     <div className="game-header__left">
       <Link to="/menu" className="game-back-button">
@@ -70,7 +70,7 @@ const GameScreen = () => {
       <div className="game-screen__content">
         
         {/* Modular Header */}
-        <GameHeader id={id} />
+        <GameHeader />
 
         {/* ── Game Stage ── */}
         <main className="game-stage" style={{ padding: 0 }}>
