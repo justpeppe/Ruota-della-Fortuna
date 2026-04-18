@@ -45,22 +45,23 @@ export const generateBoardMatrix = (phrase) => {
     const rowArray = new Array(14).fill(null);
     const missingSlotsSide = (14 - rowLen) / 2;
 
-    if (content.length === 0) {
-      return null;
+    // Se la riga ha contenuto (caratteri), lo posizioniamo al centro della riga disponibile
+    if (content && content.length > 0) {
+      const contentPadding = Math.floor((rowLen - content.length) / 2);
+      const startOffset = missingSlotsSide + contentPadding;
+
+      content.forEach((char, i) => {
+        rowArray[startOffset + i] = { char, isActive: true };
+      });
     }
 
-    const contentPadding = Math.floor((rowLen - content.length) / 2);
-    const startOffset = missingSlotsSide + contentPadding;
-
-    content.forEach((char, i) => {
-      rowArray[startOffset + i] = { char, isActive: true };
-    });
-
+    // Mappatura finale della riga per assicurare 14 elementi
     return rowArray.map((cell, c) => {
+      // Calcolo se questo indice deve essere un "buco" (angolo della croce)
       const isMissingSlot = c < missingSlotsSide || c >= (14 - missingSlotsSide);
       return cell || { char: null, isActive: false, isMissingSlot };
     });
-  }).filter(Boolean);
+  });
 
   return matrix;
 };

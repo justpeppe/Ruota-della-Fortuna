@@ -10,7 +10,8 @@ import { useBoardScale } from '../../hooks/useBoardScale';
  * Scaling: Il wrapper ha un'altezza prefissata calcolata dall'hook per evitare troncamenti.
  */
 const Board = ({ matrix, tileStates }) => {
-  const { containerRef, contentRef, scale, scaledHeight } = useBoardScale(900);
+  // Natural width aggiornata per massimizzare la scala (1100px)
+  const { containerRef, contentRef, scale, scaledHeight } = useBoardScale(1100);
 
   return (
     <div
@@ -24,7 +25,7 @@ const Board = ({ matrix, tileStates }) => {
         style={{
           transform: `scale(${scale})`,
           transformOrigin: 'top center',
-          width: '900px',
+          width: '1100px',
           willChange: 'transform',
         }}
       >
@@ -40,13 +41,13 @@ const Board = ({ matrix, tileStates }) => {
             {/* Frame SVG */}
             <div className="board__frame-svg">
               <svg
-                viewBox="-0.5 -0.5 141 41"
+                viewBox="0 0 140 40"
                 preserveAspectRatio="none"
                 className="board__frame-svg-element"
               >
                 <defs>
                   <filter id="frame-glow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feGaussianBlur stdDeviation="0.6" result="blur" />
+                    <feGaussianBlur stdDeviation="0.4" result="blur" />
                     <feMerge>
                       <feMergeNode in="blur" />
                       <feMergeNode in="SourceGraphic" />
@@ -54,10 +55,10 @@ const Board = ({ matrix, tileStates }) => {
                   </filter>
                 </defs>
                 <path
-                  d="M10,0 H130 V10 H140 V30 H130 V40 H10 V30 H0 V10 H10 Z"
+                  d="M10,0.5 H130 V10.5 H139.5 V29.5 H130 V39.5 H10 V29.5 H0.5 V10.5 H10 Z"
                   fill="none"
                   stroke="var(--color-white-bright)"
-                  strokeWidth="1.2"
+                  strokeWidth="1"
                   filter="url(#frame-glow)"
                 />
               </svg>

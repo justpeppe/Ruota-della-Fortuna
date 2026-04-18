@@ -9,7 +9,7 @@ export const quizzes = [
 export const uiCopy = {
   homepageTitle: "Benvenuti alla Ruota della Fortuna!",
   homepageSubtitle: "Scegli un quiz per iniziare a giocare",
-  gameTitle: "LA RUOTA DELLA FORTUNA DI FEDE",
+  gameTitle: "LA RUOTA DELLA FORTUNA",
   homepageExplanation: "Benvenuti alla Ruota della Fortuna di Fede! Questa applicazione è progettata per gestire la regia di un vero game show. Il Game Master controlla il tabellone dalla tastiera, mentre i concorrenti sfidano la sorte per svelare le frasi misteriose. Pronti a giocare?",
   gameMasterBadge: "GAME MASTER",
   playerBadge: "LIVE CAMERA",

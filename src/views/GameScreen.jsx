@@ -17,13 +17,31 @@ const CosmicBg = () => (
   </div>
 );
 
+const GameHeader = ({ id }) => (
+  <header className="game-header">
+    <div className="game-header__left">
+      <Link to="/menu" className="game-back-button">
+        {uiCopy.backButton}
+      </Link>
+    </div>
+    
+    <div className="game-header__center">
+      <h1 className="game-header__title">
+        {uiCopy.gameTitle}
+      </h1>
+    </div>
+
+    <div className="game-header__right">
+      <div className="badge-broadcast" style={{ marginTop: 0 }}>
+        {uiCopy.gameMasterBadge}
+      </div>
+    </div>
+  </header>
+);
+
 /**
  * Vista di Gioco.
- * 
- * Layout desktop (md+):  [Camera 9:16 sidebar | Game Area]
- * Layout mobile:         [Camera strip compatta in cima | Game area sotto, scrollabile]
- * 
- * UN SOLO <PlayerCamera /> — nessun doppio stream.
+ * Aesthetic: Broadcast Cyber-Chic.
  */
 const GameScreen = () => {
   const { id } = useParams();
@@ -38,51 +56,40 @@ const GameScreen = () => {
   return (
     <div className="game-screen">
 
-      {/* ── Sfondo cosmico ── */}
       <CosmicBg />
 
-      {/* ══════════════════════════════════════════
-          CAMERA
-         ══════════════════════════════════════════ */}
-
-      {/* Mobile: striscia orizzontale */}
-      <div className="game-screen__camera-strip">
-        <PlayerCamera className="player-camera--fill" />
-      </div>
-
-      {/* Desktop: sidebar verticale */}
+      {/* ── Sidebar Camera (Desktop) ── */}
       <div className="game-screen__camera-sidebar" style={{ width: 'calc(100svh * 9 / 16)' }}>
         <PlayerCamera className="player-camera--fill" />
       </div>
 
-      {/* ══════════════════════════════════════════
-          GAME AREA
-         ══════════════════════════════════════════ */}
       <div className="game-screen__content">
+        
+        {/* Modular Header */}
+        <GameHeader id={id} />
 
-        {/* Pulsante torna al menù */}
-        <div className="game-screen__back-row">
-          <Link to="/menu" className="game-back-button">
-            {uiCopy.backButton}
-          </Link>
-        </div>
+        {/* ── Game Stage ── */}
+        <main className="game-stage" style={{ padding: 0 }}>
+          <div className="game-stage__light" />
+          
+          {/* Mobile: Horizontal Camera strip is hidden on desktop via CSS */}
+          <div className="game-screen__camera-strip">
+            <PlayerCamera className="player-camera--fill" />
+          </div>
 
-        <Motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="game-screen__stack"
-        >
-          {/* Titolo */}
-          <h2 className="game-title">
-            {uiCopy.gameTitle}
-          </h2>
+          <Motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="game-stage__content"
+          >
+            {/* Tabellone */}
+            <Board matrix={matrix} tileStates={tileStates} />
 
-          {/* Tabellone */}
-          <Board matrix={matrix} tileStates={tileStates} />
-
-          {/* Suggerimento */}
-          <HintBox hint={quiz.hint} />
-        </Motion.div>
+            {/* Suggerimento */}
+            <HintBox hint={quiz.hint} />
+          </Motion.div>
+        </main>
 
       </div>
     </div>

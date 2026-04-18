@@ -55,6 +55,11 @@
   --font-poppins: 'Poppins', system-ui, -apple-system, sans-serif;
   --font-montserrat: 'Montserrat', sans-serif;
 
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: blur(20px);
+
   font-family: var(--font-poppins);
   background-color: var(--color-bg-base);
   color: var(--color-text-main);
@@ -146,7 +151,7 @@ a:active {
   border: 1px solid rgb(var(--color-neon-cyan) / 0.3);
   background: rgb(var(--color-neon-cyan) / 0.1);
   font-family: var(--font-poppins);
-  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 .cosmic-bg {
@@ -325,7 +330,7 @@ a:active {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 3rem 1rem;
+  padding: 1rem 1rem;
   overflow-y: auto;
 }
 
@@ -341,7 +346,7 @@ a:active {
 
 .quiz-menu__header {
   text-align: center;
-  margin-bottom: 3.5rem;
+  margin-bottom: 0 rem;
 }
 
 .quiz-menu__title {
@@ -605,6 +610,87 @@ a:active {
   overflow: hidden;
 }
 
+/* ─── Game Header (Broadcast Bar) ───────────────────────────── */
+.game-header {
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--glass-border);
+  position: relative;
+  z-index: 100;
+}
+
+.game-header__left {
+  display: flex;
+  align-items: center;
+}
+
+.game-header__center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.game-header__right {
+  display: flex;
+  align-items: center;
+}
+
+.game-header__title {
+  font-family: var(--font-montserrat);
+  font-weight: 900;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  color: white;
+  text-shadow: 0 0 10px rgb(var(--color-neon-cyan) / 0.5);
+}
+
+/* ─── Game Stage (Set Piece) ───────────────────────────────── */
+.game-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  padding: 2rem;
+  z-index: 10;
+}
+
+.game-stage__light {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgb(var(--color-neon-blue) / 0.15) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+.game-stage__content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
 .game-screen__camera-strip {
   width: 100%;
   height: 10rem;
@@ -683,11 +769,13 @@ a:active {
 
 .board {
   background: linear-gradient(180deg, rgb(5 14 52), rgb(2 11 45));
-  padding: 0.75rem;
-  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  border-radius: 1.5rem;
   position: relative;
-  box-shadow: 0 32px 80px var(--color-shadow-heavy);
-  border: 1px solid rgb(255 255 255 / 0.05);
+  box-shadow: 
+    0 40px 100px var(--color-shadow-heavy),
+    0 0 40px rgb(var(--color-neon-blue) / 0.1);
+  border: 1px solid var(--glass-border);
   overflow: visible;
 }
 
@@ -725,13 +813,14 @@ a:active {
 }
 
 .tile {
-  width: 2.25rem;
-  height: 2.75rem;
+  width: 4.5rem;
+  height: 5.5rem;
   position: relative;
   flex-shrink: 0;
   background: var(--color-tile-back);
   overflow: hidden;
   perspective: 1000px;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .tile--missing {
@@ -786,7 +875,7 @@ a:active {
 
 .tile__label {
   font-family: var(--font-montserrat);
-  font-size: 1.6rem;
+  font-size: 3.5rem;
   font-weight: 900;
   color: var(--color-text-letter);
   text-transform: uppercase;
@@ -914,12 +1003,11 @@ a:active {
 /* ─── Hint Box ───────────────────────────────────────────────── */
 
 .hint-box {
-  margin: 1rem auto 0;
   width: 100%;
-  max-width: 64rem;
+  max-width: 1050px;
   position: relative;
   overflow: hidden;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
 }
 
 .hint-box__bg {
@@ -930,10 +1018,11 @@ a:active {
 }
 
 .hint-box__content {
-  background: var(--color-bg-panel);
-  border-top: 2px solid rgb(var(--color-neon-blue));
-  border-bottom: 2px solid rgb(var(--color-neon-blue));
-  padding: 0.5rem 1rem;
+  background: rgba(16, 43, 123, 0.4);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgb(var(--color-neon-cyan) / 0.3);
+  border-bottom: 1px solid rgb(var(--color-neon-cyan) / 0.3);
+  padding: 1rem 2rem;
   position: relative;
   z-index: 10;
   border-radius: 0.125rem;
@@ -941,12 +1030,13 @@ a:active {
 
 .hint-box__text {
   font-family: var(--font-poppins);
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  color: rgb(var(--color-neon-yellow));
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: rgb(var(--color-neon-cyan));
   text-align: center;
-  text-shadow: 0 0 8px rgb(var(--color-neon-yellow));
+  text-transform: uppercase;
+  text-shadow: 0 0 15px rgb(var(--color-neon-cyan) / 0.6);
 }
 
 /* ─── Miscellaneous ──────────────────────────────────────────── */
