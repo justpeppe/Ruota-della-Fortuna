@@ -1,32 +1,90 @@
-import { useMemo } from 'react'
-import Tile from './Tile'
-import { BOARD_COLS, BOARD_ROWS, buildBoardMatrix } from '../../utils/boardLogic'
+import React from 'react';
+import Tile from './Tile';
+import { useBoardScale } from '../../hooks/useBoardScale';
 
-function Board({ phrase }) {
-  const matrix = useMemo(() => buildBoardMatrix(phrase), [phrase])
+/**
+ * Tabellone completo — struttura a croce 12-14-14-12.
+ * 
+ * Separazione delle tessere: gap-px tra celle.
+ * Cornice bianca: SVG assoluto sopra tutto.
+ * Scaling: Il wrapper ha un'altezza prefissata calcolata dall'hook per evitare troncamenti.
+ */
+const Board = ({ matrix, tileStates }) => {
+  const { containerRef, contentRef, scale, scaledHeight } = useBoardScale(900);
 
   return (
-    <section className="rounded-2xl border border-neon-violet/70 bg-panel p-4 shadow-neon md:p-6">
-      <div className="board-perspective grid grid-rows-4 gap-2">
-        {Array.from({ length: BOARD_ROWS }).map((_, rowIndex) => (
-          <div key={`row-${rowIndex}`} className="grid grid-cols-12 gap-2">
-            {Array.from({ length: BOARD_COLS }).map((__, colIndex) => {
-              const letter = matrix[rowIndex][colIndex]
+    <div
+      ref={containerRef}
+      className="board-scale-wrapper"
+      style={{ height: scaledHeight !== 'auto' ? `${scaledHeight}px` : 'auto' }}
+    >
+      <div
+        ref={contentRef}
+        className="inline-block"
+        style={{
+          transform: `scale(${scale})`,
+          transformOrigin: 'top center',
+          width: '900px',
+          willChange: 'transform',
+        }}
+      >
+        {/* Scocca esterna */}
+        <div className="board">
 
-              return (
-                <Tile
-                  key={`${rowIndex}-${colIndex}`}
-                  letter={letter}
-                  revealed={Boolean(letter && letter !== ' ')}
-                  delay={(rowIndex * BOARD_COLS + colIndex) * 0.01}
+          {/* Vignettatura angoli */}
+          <div className="board__vignette" />
+
+          {/* Griglia delle tessere */}
+          <div className="board__container">
+
+            {/* Frame SVG */}
+            <div className="board__frame-svg">
+              <svg
+                viewBox="-0.5 -0.5 141 41"
+                preserveAspectRatio="none"
+                className="board__frame-svg-element"
+              >
+                <defs>
+                  <filter id="frame-glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="0.6" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+                <path
+                  d="M10,0 H130 V10 H140 V30 H130 V40 H10 V30 H0 V10 H10 Z"
+                  fill="none"
+                  stroke="var(--color-white-bright)"
+                  strokeWidth="1.2"
+                  filter="url(#frame-glow)"
                 />
-              )
-            })}
-          </div>
-        ))}
-      </div>
-    </section>
-  )
-}
+              </svg>
+            </div>
 
-export default Board
+            {/* Tessere */}
+            <div className="board__grid">
+              {matrix.map((row, rowIndex) => (
+                <div key={rowIndex} className="board__row">
+                  {row.map((cell, cellIndex) => (
+                    <Tile
+                      key={`${rowIndex}-${cellIndex}`}
+                      char={cell.char}
+                      isActive={cell.isActive}
+                      isMissingSlot={cell.isMissingSlot}
+                      status={tileStates[`${rowIndex}-${cellIndex}`] || 'hidden'}
+                    />
+                  ))}
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Board;

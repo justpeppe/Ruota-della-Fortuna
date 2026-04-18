@@ -1,53 +1,66 @@
-export const BOARD_ROWS = 4
-export const BOARD_COLS = 12
+export const generateBoardMatrix = (phrase) => {
+  const ROW_LENGTHS = [12, 14, 14, 12];
+  const words = phrase.toUpperCase().split(' ');
 
-const normalizePhrase = (phrase) => phrase.trim().replace(/\s+/g, ' ').toUpperCase()
-
-const splitWordsIntoRows = (phrase, rows = BOARD_ROWS, cols = BOARD_COLS) => {
-  const words = normalizePhrase(phrase).split(' ').filter(Boolean)
-  const lines = []
-  let currentLine = ''
-
-  for (const word of words) {
-    const nextLine = currentLine ? `${currentLine} ${word}` : word
-
-    if (nextLine.length <= cols) {
-      currentLine = nextLine
-      continue
-    }
-
-    if (currentLine) {
-      lines.push(currentLine)
-    }
-
-    currentLine = word
-
-    if (lines.length === rows) {
-      break
-    }
-  }
-
-  if (currentLine && lines.length < rows) {
-    lines.push(currentLine)
-  }
-
-  return lines.slice(0, rows)
-}
-
-export const buildBoardMatrix = (phrase, rows = BOARD_ROWS, cols = BOARD_COLS) => {
-  const matrix = Array.from({ length: rows }, () => Array(cols).fill(null))
-  const lines = splitWordsIntoRows(phrase, rows, cols)
-
-  lines.forEach((line, rowIndex) => {
-    const startCol = Math.max(0, Math.floor((cols - line.length) / 2))
-
-    line.split('').forEach((char, charIndex) => {
-      const targetCol = startCol + charIndex
-      if (targetCol >= 0 && targetCol < cols) {
-        matrix[rowIndex][targetCol] = char
+  // Stima se la frase sta in 2 righe
+  let neededRows = 0;
+  let tIdx = 0;
+  while (tIdx < words.length && neededRows < 4) {
+    let currentLine = "";
+    while (tIdx < words.length) {
+      const word = words[tIdx];
+      const spaceNeeded = currentLine.length === 0 ? word.length : currentLine.length + 1 + word.length;
+      if (spaceNeeded <= ROW_LENGTHS[neededRows]) {
+        currentLine += (currentLine.length === 0 ? "" : " ") + word;
+        tIdx++;
+      } else {
+        break;
       }
-    })
-  })
+    }
+    neededRows++;
+  }
 
-  return matrix
-}
+  const targetRow = neededRows <= 2 ? 1 : 0;
+  let wordIdx = 0;
+  const rows = [[], [], [], []];
+
+  for (let r = targetRow; r < 4 && wordIdx < words.length; r++) {
+    let currentLine = "";
+    while (wordIdx < words.length) {
+      const word = words[wordIdx];
+      const spaceNeeded = currentLine.length === 0 ? word.length : currentLine.length + 1 + word.length;
+
+      if (spaceNeeded <= ROW_LENGTHS[r]) {
+        currentLine += (currentLine.length === 0 ? "" : " ") + word;
+        wordIdx++;
+      } else {
+        break;
+      }
+    }
+    rows[r] = currentLine.split('');
+  }
+
+  const matrix = rows.map((content, r) => {
+    const rowLen = ROW_LENGTHS[r];
+    const rowArray = new Array(14).fill(null);
+    const missingSlotsSide = (14 - rowLen) / 2;
+
+    if (content.length === 0) {
+      return null;
+    }
+
+    const contentPadding = Math.floor((rowLen - content.length) / 2);
+    const startOffset = missingSlotsSide + contentPadding;
+
+    content.forEach((char, i) => {
+      rowArray[startOffset + i] = { char, isActive: true };
+    });
+
+    return rowArray.map((cell, c) => {
+      const isMissingSlot = c < missingSlotsSide || c >= (14 - missingSlotsSide);
+      return cell || { char: null, isActive: false, isMissingSlot };
+    });
+  }).filter(Boolean);
+
+  return matrix;
+};
