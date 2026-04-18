@@ -46,7 +46,7 @@ const QuizSelection = () => {
               <Link to={`/quiz/${quiz.id}`} className="quiz-card">
                 <div className="quiz-card__body">
                   <span className="quiz-card__label">
-                    Pacchetto #{quiz.id}
+                    DOMANDA #{quiz.id}
                   </span>
                   <span className="quiz-card__title">
                     {quiz.hint}

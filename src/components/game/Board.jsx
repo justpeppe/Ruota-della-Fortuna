@@ -9,7 +9,7 @@ import { useBoardScale } from '../../hooks/useBoardScale';
  * Cornice bianca: SVG assoluto sopra tutto.
  * Scaling: Il wrapper ha un'altezza prefissata calcolata dall'hook per evitare troncamenti.
  */
-const Board = ({ matrix, tileStates }) => {
+const Board = ({ matrix, tileStates, forceRevealAll = false }) => {
   // Natural width aggiornata per massimizzare la scala (1100px)
   const { containerRef, contentRef, scale, scaledHeight } = useBoardScale(1100);
 
@@ -74,7 +74,10 @@ const Board = ({ matrix, tileStates }) => {
                       char={cell.char}
                       isActive={cell.isActive}
                       isMissingSlot={cell.isMissingSlot}
-                      status={tileStates[`${rowIndex}-${cellIndex}`] || 'hidden'}
+                      status={forceRevealAll && cell.isActive && cell.char !== ' '
+                        ? 'revealed'
+                        : (tileStates[`${rowIndex}-${cellIndex}`] || 'hidden')}
+                      forceRevealAll={forceRevealAll}
                     />
                   ))}
                 </div>

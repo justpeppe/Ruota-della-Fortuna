@@ -4,6 +4,11 @@ export const quizzes = [
   { id: 3, hint: "UN CELEBRE DIPINTO DI LEONARDO", phrase: "LA GIOCONDA" },
   { id: 4, hint: "IL CAPOLUOGO DELLA TOSCANA", phrase: "FIRENZE" },
   { id: 5, hint: "SI MANGIA SPESSO AL CINEMA", phrase: "POPCORN" },
+  { id: 6, hint: "UN FAMOSO FILM DI STEVEN SPIELBERG", phrase: "ET L'EXTRA-TERRESTRE DI SPIELBERG" },
+  { id: 7, hint: "UN ANIMALE CHE VOLA", phrase: "UN FALCO CHE VOLA ALTO NEL CIELO" },
+  { id: 8, hint: "UN CELEBRE ROMANZO DI J.K. ROWLING", phrase: "HARRY POTTER E LA PIETRA FILOSOFALE" },
+  { id: 9, hint: "UN FAMOSO PITTORICO FRANCESE", phrase: "CLAUDE MONET E I NINFEE GIGANTI" },
+  { id: 10, hint: "UN CELEBRE FILM DI CHRISTOPHER NOLAN", phrase: "INCEPTION, IL FILM DEI SOGNI" }
 ];
 
 export const uiCopy = {

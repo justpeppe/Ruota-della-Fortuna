@@ -15,6 +15,8 @@ export const useBoardScale = (naturalWidth = 900) => {
 
     const observer = new ResizeObserver(entries => {
       for (const entry of entries) {
+        if (!contentRef.current) return;
+
         // Calcola la scala in base alla larghezza disponibile
         const availableWidth = entry.contentRect.width;
         const newScale = Math.min(1, availableWidth / naturalWidth);

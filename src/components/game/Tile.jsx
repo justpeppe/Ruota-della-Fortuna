@@ -9,7 +9,7 @@ import { AnimatePresence, motion as Motion } from 'framer-motion';
  * è gestita interamente dall'SVG in Board.jsx per evitare sovrapposizioni.
  * Il separatore interno è gap nel container flex (in Board), non border.
  */
-const Tile = ({ char, isActive, status, isMissingSlot }) => {
+const Tile = ({ char, isActive, status, isMissingSlot, forceRevealAll = false }) => {
   // Slot fantoccio per gli angoli smussati della griglia
   if (isMissingSlot) {
     return <div className="tile tile--missing" />;
@@ -21,6 +21,18 @@ const Tile = ({ char, isActive, status, isMissingSlot }) => {
       <div className="tile">
         <div className="tile__led" />
         <div className="tile__depth" />
+      </div>
+    );
+  }
+
+  if (forceRevealAll && isActive && char !== ' ') {
+    return (
+      <div className="tile tile--revealed tile--revealed-instant">
+        <div className="tile__face">
+          <span className="tile__label">
+            {char}
+          </span>
+        </div>
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import Board from '../components/game/Board';
 import HintBox from '../components/game/HintBox';
@@ -25,7 +25,7 @@ const GameHeader = () => (
         <span className="game-back-button__text">{uiCopy.backButton.replace('⬅ ', '')}</span>
       </Link>
     </div>
-    
+
     <div className="game-header__center">
       <h1 className="game-header__title">
         {uiCopy.gameTitle}
@@ -50,10 +50,12 @@ const GameHeader = () => (
 const GameScreen = () => {
   const { id } = useParams();
   const { playSingleDing, playWrongSound } = useAudio();
+  const [isMasterRevealEnabled, setIsMasterRevealEnabled] = useState(false);
 
   const quiz = useMemo(() => quizzes.find(q => q.id === parseInt(id)), [id]);
   const matrix = useMemo(() => (quiz ? generateBoardMatrix(quiz.phrase) : []), [quiz]);
   const { tileStates } = useGameLogic(matrix, () => playSingleDing(), () => playWrongSound());
+  const revealAllActiveTiles = () => setIsMasterRevealEnabled(true);
 
   if (!quiz) return <Navigate to="/" replace />;
 
@@ -68,14 +70,14 @@ const GameScreen = () => {
       </div>
 
       <div className="game-screen__content">
-        
+
         {/* Modular Header */}
         <GameHeader />
 
         {/* ── Game Stage ── */}
         <main className="game-stage" style={{ padding: 0 }}>
           <div className="game-stage__light" />
-          
+
           {/* Mobile: Horizontal Camera strip is hidden on desktop via CSS */}
           <div className="game-screen__camera-strip">
             <PlayerCamera className="player-camera--fill" />
@@ -88,7 +90,11 @@ const GameScreen = () => {
             className="game-stage__content"
           >
             {/* Tabellone */}
-            <Board matrix={matrix} tileStates={tileStates} />
+            <Board
+              matrix={matrix}
+              tileStates={tileStates}
+              forceRevealAll={isMasterRevealEnabled}
+            />
 
             {/* Suggerimento */}
             <HintBox hint={quiz.hint} />
@@ -96,6 +102,16 @@ const GameScreen = () => {
         </main>
 
       </div>
+
+      <button
+        type="button"
+        className="game-master-reveal-button"
+        onClick={revealAllActiveTiles}
+        aria-label="Rivela tutta la frase corretta"
+        title="Rivela tutta la frase corretta"
+      >
+        <span className="game-master-reveal-button__icon">◎</span>
+      </button>
     </div>
   );
 };
