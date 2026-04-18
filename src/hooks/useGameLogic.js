@@ -61,11 +61,11 @@ export const useGameLogic = (matrix, onDing, onWrong) => {
       const { r, c } = targets[i];
       setTileStates(prev => ({ ...prev, [`${r}-${c}`]: 'illuminated' }));
       if (onDing) onDing();
-      await new Promise(resolve => setTimeout(resolve, 200));
+      await new Promise(resolve => setTimeout(resolve, 500));
     }
 
     // Pausa prima del reveal
-    await new Promise(resolve => setTimeout(resolve, 300));
+    await new Promise(resolve => setTimeout(resolve, 500));
 
     // --- FASE 2: Rivelazione a Cascata per Colonna (100ms tra colonne) ---
     const columns = [...new Set(targets.map(t => t.c))].sort((a, b) => a - b);
@@ -82,7 +82,7 @@ export const useGameLogic = (matrix, onDing, onWrong) => {
         });
         return nextState;
       });
-      await new Promise(resolve => setTimeout(resolve, 120));
+      await new Promise(resolve => setTimeout(resolve, 200));
     }
 
     isAnimatingRef.current = false;

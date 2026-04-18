@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './views/LandingPage';
 import QuizSelection from './views/QuizSelection';
+import RulesView from './views/RulesView';
 import GameScreen from './views/GameScreen';
 
 /**
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           {/* Landing Page */}
           <Route path="/" element={<LandingPage />} />
+          <Route path="/regolamento" element={<RulesView />} />
 
           {/* Menù di selezione */}
           <Route path="/menu" element={<QuizSelection />} />

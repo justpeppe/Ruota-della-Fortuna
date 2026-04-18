@@ -221,20 +221,21 @@ a:active {
   font-weight: 900;
   text-transform: uppercase;
   font-style: italic;
-  line-height: 0.9;
+  line-height: 0.95;
   letter-spacing: -0.05em;
   color: white;
   margin-bottom: 1.5rem;
   text-align: center;
-  font-size: clamp(2.8rem, 9vw, 7rem);
+  font-size: clamp(2.2rem, 8vw, 4.5rem);
+  text-shadow: 0 0 20px rgba(var(--color-neon-cyan), 0.3);
 }
 
 .hero__subtitle {
   font-family: var(--font-poppins);
-  font-size: 0.875rem;
-  line-height: 1.75;
+  font-size: 0.95rem;
+  line-height: 1.6;
   color: var(--color-text-dim);
-  max-width: 24rem;
+  max-width: 32rem;
   margin-bottom: 3rem;
   text-align: center;
 }
@@ -317,8 +318,107 @@ a:active {
 .landing-page__separator {
   width: 6rem;
   height: 1px;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   background: linear-gradient(90deg, transparent, rgb(34 211 238), transparent);
+}
+
+/* ─── Rules View ─────────────────────────────────────────────── */
+
+.rules-view {
+  min-height: 100vh;
+  position: relative;
+  background: var(--color-bg-base);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  overflow-y: auto;
+}
+
+.rules-view__container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 768px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.rules-view__header {
+  text-align: center;
+}
+
+.rules-view__badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.4em;
+  color: rgb(var(--color-neon-cyan));
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+}
+
+.rules-view__title {
+  font-family: var(--font-montserrat);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  color: white;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-shadow: 0 0 20px rgba(var(--color-neon-cyan), 0.3);
+  margin: 0;
+}
+
+.rules-view__box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+  padding: 1.5rem 2rem;
+  backdrop-filter: blur(20px);
+  max-width: 100%;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.rules-view__text {
+  font-family: var(--font-poppins);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-dim);
+  text-align: center;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .rules-view__text {
+    font-size: 1.05rem;
+  }
+}
+
+.rules-view__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.rules-view__back {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-text-dim);
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.rules-view__back:hover {
+  opacity: 1;
 }
 
 /* ─── Quiz Selection ─────────────────────────────────────────── */
@@ -613,16 +713,22 @@ a:active {
 /* ─── Game Header (Broadcast Bar) ───────────────────────────── */
 .game-header {
   width: 100%;
-  height: 4rem;
+  height: 4.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
+  padding: 0 1rem;
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   border-bottom: 1px solid var(--glass-border);
   position: relative;
   z-index: 100;
+}
+
+@media (min-width: 768px) {
+  .game-header {
+    padding: 0 2rem;
+  }
 }
 
 .game-header__left {
@@ -631,26 +737,55 @@ a:active {
 }
 
 .game-header__center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  flex: 1;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
 }
 
 .game-header__right {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  min-width: 60px;
+}
+
+.game-header__left {
+  display: flex;
+  align-items: center;
+  min-width: 60px;
 }
 
 .game-header__title {
   font-family: var(--font-montserrat);
   font-weight: 900;
-  font-size: 1.25rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   font-style: italic;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   color: white;
   text-shadow: 0 0 10px rgb(var(--color-neon-cyan) / 0.5);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 180px;
+}
+
+@media (min-width: 768px) {
+  .game-header__title {
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
+    max-width: none;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+  }
+  .game-header__left, .game-header__right {
+    min-width: 150px;
+  }
 }
 
 /* ─── Game Stage (Set Piece) ───────────────────────────────── */
@@ -662,8 +797,14 @@ a:active {
   justify-content: center;
   width: 100%;
   position: relative;
-  padding: 2rem;
+  padding: 1rem;
   z-index: 10;
+}
+
+@media (min-width: 768px) {
+  .game-stage {
+    padding: 2rem;
+  }
 }
 
 .game-stage__light {
@@ -814,7 +955,7 @@ a:active {
 
 .tile {
   width: 4.5rem;
-  height: 5.5rem;
+  height: 4.5rem;
   position: relative;
   flex-shrink: 0;
   background: var(--color-tile-back);
@@ -1043,18 +1184,57 @@ a:active {
 
 .game-back-button {
   color: var(--color-text-dim);
-  font-size: 11px;
+  font-size: 14px;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  transition: color 300ms, background-color 300ms;
+  letter-spacing: 0.2rem;
+  transition: all 300ms;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgb(255 255 255 / 0.05);
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  border: 1px solid rgb(255 255 255 / 0.1);
+  background: var(--glass-bg);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--glass-border);
   font-family: var(--font-poppins);
+}
+
+.game-back-button__text {
+  display: none;
+}
+
+.game-header__badge {
+  margin-top: 0;
+  padding: 0.4rem 0.6rem;
+}
+
+.badge-broadcast__text {
+  display: none;
+}
+
+.badge-broadcast__dot {
+  width: 8px;
+  height: 8px;
+  background: rgb(var(--color-neon-cyan));
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgb(var(--color-neon-cyan));
+}
+
+@media (min-width: 768px) {
+  .game-back-button {
+    font-size: 10px;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    letter-spacing: 0.2em;
+  }
+  .game-back-button__text {
+    display: inline;
+  }
+  .game-header__badge {
+    padding: 0.375rem 1rem;
+  }
+  .badge-broadcast__text {
+    display: inline;
+  }
 }
 
 @media (max-width: 767px) {

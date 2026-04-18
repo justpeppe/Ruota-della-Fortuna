@@ -21,7 +21,8 @@ const GameHeader = ({ id }) => (
   <header className="game-header">
     <div className="game-header__left">
       <Link to="/menu" className="game-back-button">
-        {uiCopy.backButton}
+        <span className="game-back-button__icon">⬅</span>
+        <span className="game-back-button__text">{uiCopy.backButton.replace('⬅ ', '')}</span>
       </Link>
     </div>
     
@@ -32,9 +33,12 @@ const GameHeader = ({ id }) => (
     </div>
 
     <div className="game-header__right">
-      <div className="badge-broadcast" style={{ marginTop: 0 }}>
-        {uiCopy.gameMasterBadge}
-      </div>
+      {uiCopy.gameMasterBadge && (
+        <div className="badge-broadcast game-header__badge">
+          <span className="badge-broadcast__dot" />
+          <span className="badge-broadcast__text">{uiCopy.gameMasterBadge}</span>
+        </div>
+      )}
     </div>
   </header>
 );
