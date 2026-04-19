@@ -3,20 +3,11 @@ import { Link } from 'react-router-dom';
 import { motion as Motion } from 'framer-motion';
 import { quizzes } from '../data/quizzes';
 
-/** Sfondo cosmico riutilizzabile — identico alla Landing Page */
-const CosmicBg = () => (
-  <div className="cosmic-bg">
-    <div className="cosmic-bg__blob cosmic-bg__blob--purple" />
-    <div className="cosmic-bg__blob cosmic-bg__blob--blue" />
-    <div className="cosmic-bg__blob cosmic-bg__blob--cyan" />
-  </div>
-);
+
 
 const QuizSelection = () => {
   return (
     <div className="quiz-menu">
-
-      <CosmicBg />
 
       <div className="quiz-menu__content">
 
@@ -26,9 +17,6 @@ const QuizSelection = () => {
           animate={{ y: 0, opacity: 1 }}
           className="quiz-menu__header"
         >
-          <span className="badge-broadcast">
-            Broadcasting Menu
-          </span>
           <h2 className="quiz-menu__title">
             Selezione Quiz
           </h2>

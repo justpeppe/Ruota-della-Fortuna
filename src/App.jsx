@@ -5,6 +5,7 @@ import QuizSelection from './views/QuizSelection';
 import RulesView from './views/RulesView';
 import GameScreen from './views/GameScreen';
 import GlobalFullscreenButton from './components/layout/GlobalFullscreenButton';
+import CosmicBg from './components/layout/CosmicBg';
 
 /**
  * Componente principale dell'applicazione.
@@ -14,6 +15,7 @@ function App() {
   return (
     <HashRouter>
       <div className="app-shell">
+        <CosmicBg />
         <GlobalFullscreenButton />
         <Routes>
           {/* Landing Page */}

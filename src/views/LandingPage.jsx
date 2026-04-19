@@ -12,13 +12,6 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
 
-      {/* ── Sfondo Cosmico multi-layer ── */}
-      <div className="cosmic-bg">
-        <div className="cosmic-bg__blob cosmic-bg__blob--purple" />
-        <div className="cosmic-bg__blob cosmic-bg__blob--blue" />
-        <div className="cosmic-bg__blob cosmic-bg__blob--cyan" />
-      </div>
-
       {/* ── Contenuto ── */}
       <div className="hero">
 
@@ -37,14 +30,10 @@ const LandingPage = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="hero__box"
+          className="glass-panel"
         >
-          <p className="hero__subtitle">
-            {uiCopy.homepageSubtitle}
-            <br />
-            <span className="hero__description">
-              {uiCopy.homepageExplanation}
-            </span>
+          <p className="glass-panel__text">
+            {uiCopy.homepageExplanation}
           </p>
         </Motion.div>
 
@@ -53,7 +42,7 @@ const LandingPage = () => {
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          style={{ marginTop: '1.75rem' }}
+          className="hero__cta-wrapper"
         >
           <Link to="/regolamento" className="hero__cta">
             <span>{uiCopy.ctaRules}</span>

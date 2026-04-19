@@ -9,13 +9,7 @@ import { useAudio } from '../hooks/useAudio';
 import { uiCopy, quizzes } from '../data/quizzes';
 import { motion as Motion } from 'framer-motion';
 
-const CosmicBg = () => (
-  <div className="cosmic-bg">
-    <div className="cosmic-bg__blob cosmic-bg__blob--purple" />
-    <div className="cosmic-bg__blob cosmic-bg__blob--blue" />
-    <div className="cosmic-bg__blob cosmic-bg__blob--cyan" />
-  </div>
-);
+
 
 const GameHeader = () => (
   <header className="game-header">
@@ -62,10 +56,8 @@ const GameScreen = () => {
   return (
     <div className="game-screen">
 
-      <CosmicBg />
-
       {/* ── Sidebar Camera (Desktop) ── */}
-      <div className="game-screen__camera-sidebar" style={{ width: 'calc(100svh * 9 / 16)' }}>
+      <div className="game-screen__camera-sidebar">
         <PlayerCamera className="player-camera--fill" />
       </div>
 
@@ -75,7 +67,7 @@ const GameScreen = () => {
         <GameHeader />
 
         {/* ── Game Stage ── */}
-        <main className="game-stage" style={{ padding: 0 }}>
+        <main className="game-stage game-stage--flush">
           <div className="game-stage__light" />
 
           {/* Mobile: Horizontal Camera strip is hidden on desktop via CSS */}

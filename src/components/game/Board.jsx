@@ -21,12 +21,9 @@ const Board = ({ matrix, tileStates, forceRevealAll = false }) => {
     >
       <div
         ref={contentRef}
-        className="inline-block"
+        className="inline-block board__scalable-content"
         style={{
-          transform: `scale(${scale})`,
-          transformOrigin: 'top center',
-          width: '1100px',
-          willChange: 'transform',
+          transform: `scale(${scale})`
         }}
       >
         {/* Scocca esterna */}

@@ -11,13 +11,6 @@ const RulesView = () => {
   return (
     <div className="rules-view">
       
-      {/* Sfondo Cosmico (stesso della landing per continuità) */}
-      <div className="cosmic-bg">
-        <div className="cosmic-bg__blob cosmic-bg__blob--purple" />
-        <div className="cosmic-bg__blob cosmic-bg__blob--blue" />
-        <div className="cosmic-bg__blob cosmic-bg__blob--cyan" />
-      </div>
-
       <div className="rules-view__container">
         
         {/* Intestazione */}
@@ -35,9 +28,9 @@ const RulesView = () => {
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
-          className="rules-view__box"
+          className="glass-panel"
         >
-          <p className="rules-view__text">
+          <p className="glass-panel__text">
             {uiCopy.rulesExplanation}
           </p>
         </Motion.div>
