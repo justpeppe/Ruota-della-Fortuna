@@ -1,8 +1,8 @@
 export const quizzes = [
-  { id: 1, hint: "31 DICEMBRE IN ITALIA", phrase: "IL CENONE DI CAPODANNO" },
-  { id: 2, hint: "UN MESTIERE PERICOLOSO", phrase: "DOMATORE DI LEONI" },
-  { id: 3, hint: "UN CELEBRE DIPINTO DI LEONARDO", phrase: "LA GIOCONDA" },
-  { id: 4, hint: "IL CAPOLUOGO DELLA TOSCANA", phrase: "FIRENZE" },
+  { id: 1, hint: "ORA LA PUOI DIRE", phrase: "LA DATA DEGLI ESAMI UNIVERSITARI" },
+  { id: 2, hint: "INDIA", phrase: "LÌ GLI INCIDENTI NON FANNO NOVITÀ" },
+  { id: 3, hint: "STEWIE", phrase: "TESTA ADATTA PER GIOCARE A RUGBY" },
+  { id: 4, hint: "MAP", phrase: "SQUADRA SPECIALE CHE ESPLORA POSTI ABBANDONATI" },
   { id: 5, hint: "SI MANGIA SPESSO AL CINEMA", phrase: "POPCORN" },
   { id: 6, hint: "UN FAMOSO FILM DI STEVEN SPIELBERG", phrase: "ET L'EXTRA-TERRESTRE DI SPIELBERG" },
   { id: 7, hint: "UN ANIMALE CHE VOLA", phrase: "UN FALCO CHE VOLA ALTO NEL CIELO" },
