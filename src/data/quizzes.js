@@ -1,14 +1,12 @@
 export const quizzes = [
   { id: 1, hint: "ORA LA PUOI DIRE", phrase: "LA DATA DEGLI ESAMI UNIVERSITARI" },
-  { id: 2, hint: "INDIA", phrase: "LÌ GLI INCIDENTI NON FANNO NOVITÀ" },
-  { id: 3, hint: "STEWIE", phrase: "TESTA ADATTA PER GIOCARE A RUGBY" },
+  { id: 3, hint: "STEWIE GRIFFIN", phrase: "TESTA ADATTA PER GIOCARE A RUGBY" },
   { id: 4, hint: "MAP", phrase: "SQUADRA SPECIALE CHE ESPLORA POSTI ABBANDONATI" },
-  { id: 5, hint: "SI MANGIA SPESSO AL CINEMA", phrase: "POPCORN" },
-  { id: 6, hint: "UN FAMOSO FILM DI STEVEN SPIELBERG", phrase: "ET L'EXTRA-TERRESTRE DI SPIELBERG" },
-  { id: 7, hint: "UN ANIMALE CHE VOLA", phrase: "UN FALCO CHE VOLA ALTO NEL CIELO" },
+  { id: 5, hint: "TENNIS", phrase: "LO SPORT DI CUI SEI MAESTRO" },
+  { id: 6, hint: "GRANA PADANO", phrase: "UOMO SEPOLTO DAL SUO STESSO FORMAGGIO" },
+  { id: 7, hint: "BOSCO DI MALABOTTA", phrase: "LA PASSEGGIATA PIU' LUNGA DEL PREVISTO" },
   { id: 8, hint: "UN CELEBRE ROMANZO DI J.K. ROWLING", phrase: "HARRY POTTER E LA PIETRA FILOSOFALE" },
-  { id: 9, hint: "UN FAMOSO PITTORICO FRANCESE", phrase: "CLAUDE MONET E I NINFEE GIGANTI" },
-  { id: 10, hint: "UN CELEBRE FILM DI CHRISTOPHER NOLAN", phrase: "INCEPTION, IL FILM DEI SOGNI" }
+  { id: 9, hint: "ORA LA PUOI DIRE", phrase: "LA DATA DEGLI ESAMI UNIVERSITARI" },
 ];
 
 export const uiCopy = {
