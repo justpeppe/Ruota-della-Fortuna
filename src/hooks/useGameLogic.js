@@ -1,6 +1,30 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
 /**
+ * Mappa vocale base → tutte le sue varianti accentate.
+ * Premendo A, E, I, O, U vengono rivelate anche le corrispondenti lettere accentate.
+ */
+const VOWEL_ACCENTS = {
+  A: ['À', 'Á', 'Â', 'Ã', 'Ä', 'Å'],
+  E: ['È', 'É', 'Ê', 'Ë'],
+  I: ['Ì', 'Í', 'Î', 'Ï'],
+  O: ['Ò', 'Ó', 'Ô', 'Õ', 'Ö'],
+  U: ['Ù', 'Ú', 'Û', 'Ü'],
+};
+
+/**
+ * Restituisce l'insieme delle lettere da cercare nel tabellone per un dato tasto.
+ * Es. key='E' → Set(['E', 'È', 'É', ...])
+ */
+const getLetterFamily = (key) => {
+  const family = new Set([key]);
+  if (VOWEL_ACCENTS[key]) {
+    VOWEL_ACCENTS[key].forEach(v => family.add(v));
+  }
+  return family;
+};
+
+/**
  * Calcola lo stato iniziale di tutte le tessere di una matrice.
  * I caratteri speciali (spazi, punteggiatura) sono rivelati da subito.
  */
@@ -37,10 +61,13 @@ export const useGameLogic = (matrix, onDing, onWrong) => {
     if (!/^[A-ZÀ-ÿ]$/.test(key)) return;
     if (processedLetters.has(key)) return;
 
+    // Costruiamo la famiglia di lettere: la base + tutte le accentate corrispondenti
+    const letterFamily = getLetterFamily(key);
+
     const targets = [];
     matrix.forEach((row, r) => {
       row.forEach((cell, c) => {
-        if (cell.isActive && cell.char?.toUpperCase() === key) {
+        if (cell.isActive && letterFamily.has(cell.char?.toUpperCase())) {
           targets.push({ r, c });
         }
       });
@@ -54,7 +81,8 @@ export const useGameLogic = (matrix, onDing, onWrong) => {
     // Lettera corretta trovata, avvia animazione
     isAnimatingRef.current = true;
     setIsAnimating(true);
-    setProcessedLetters(prev => new Set([...prev, key]));
+    // Segniamo come processata la lettera base + tutte le sue accentate
+    setProcessedLetters(prev => new Set([...prev, key, ...letterFamily]));
 
     // --- FASE 1: Illuminazione Sequenziale (200ms per tessera) ---
     for (let i = 0; i < targets.length; i++) {

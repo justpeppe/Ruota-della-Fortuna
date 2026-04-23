@@ -2,8 +2,8 @@ export const quizzes = [
   { id: 1, hint: "STEWIE GRIFFIN", phrase: "TESTA ADATTA PER GIOCARE A RUGBY" },
   { id: 2, hint: "TENNIS", phrase: "LO SPORT DI CUI SEI MAESTRO" },
   { id: 3, hint: "GRANA PADANO", phrase: "UOMO SEPOLTO DAL SUO STESSO FORMAGGIO" },
-  { id: 4, hint: "BOSCO DI MALABOTTA", phrase: "LA PASSEGGIATA PIU' LUNGA DEL PREVISTO" },
-  { id: 5, hint: "INTONACO", phrase: "A MALTA E’ CADUTO AI TUOI PIEDI" },
+  { id: 4, hint: "BOSCO DI MALABOTTA", phrase: "LA PASSEGGIATA PIÙ LUNGA DEL PREVISTO" },
+  { id: 5, hint: "INTONACO", phrase: "A MALTA È CADUTO AI TUOI PIEDI" },
   { id: 6, hint: "ORA LA PUOI DIRE", phrase: "LA DATA DEGLI ESAMI UNIVERSITARI" },
 ];
 
@@ -16,5 +16,5 @@ export const uiCopy = {
   ctaRules: "Leggi il Regolamento",
   ctaStart: "Inizia a Giocare",
   backButton: "⬅ Indietro",
-  rulesExplanation: "Il gioco si svolge su un tabellone composto da caselle che celano una frase misteriosa divisa per tema. Durante il tuo turno, dovrai girare la ruota e chiamare una consonante: se è presente nella frase, le caselle corrispondenti si illumineranno e guadagnerai punti preziosi. Potrai anche decidere di 'comprare' una vocale utilizzando i punti accumulati per facilitare la soluzione. Quando ti senti pronto, prova a dare la soluzione completa: chi svela l'intera frase vince la manche. Buona fortuna per questa sfida leggendaria!"
+  rulesExplanation: "Il gioco si svolge su un tabellone composto da caselle che celano una frase misteriosa divisa per tema. Durante il tuo turno, dovrai chiamare una lettera: se è presente nella frase, le caselle corrispondenti si illumineranno! Quando ti senti pronto, prova a dare la soluzione completa per vincere la manche. Buona fortuna per questa sfida leggendaria!"
 };
