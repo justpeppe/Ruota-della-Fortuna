@@ -17,5 +17,5 @@ export const uiCopy = {
   ctaRules: "Leggi il Regolamento",
   ctaStart: "Inizia a Giocare",
   backButton: "⬅ Indietro",
-  rulesExplanation: "Il gioco si svolge su un tabellone composto da caselle che celano una frase misteriosa. Dott. Mastroeni Federico dovrai chiamare man mano le lettere e, se sono presenti nella frase, le caselle corrispondenti si illumineranno! Per aiutarti con la tua ADHD potrai chiamare sia le consonanti che le vocali senza nessuna distinzione. Quando ti senti pronto, prova a dare la soluzione completa per vincere la manche. Buona fortuna, anche se dopo la laurea puoi superare qualsiasi sfida."
+  rulesExplanation: "Il gioco si svolge su un tabellone composto da caselle che celano una frase misteriosa. Caro Dott. Mastroeni Federico chiama le lettere e, se sono presenti, le caselle corrispondenti si illumineranno! Per aiutarti con la tua ADHD potrai chiamare sia le consonanti che le vocali senza nessuna distinzione. Quando ti senti pronto, prova a dare la soluzione completa per vincere la manche. Buona fortuna, anche se dopo la laurea puoi superare qualsiasi sfida."
 };
